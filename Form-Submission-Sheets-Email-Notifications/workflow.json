@@ -1,0 +1,133 @@
+{
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "Thank you for contacting us",
+        "message": "=Hi {{ $json.Name }},  Thank you for reaching out.  We’ve received your message and our team will review it shortly.   If any additional information is required, we’ll contact you via this email.  Best regards,   Team",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -32,
+        32
+      ],
+      "id": "89ebd877-8741-4972-9b04-c717dd88f4ed",
+      "name": "Send a message to potential lead",
+      "webhookId": "1c2a2a40-9265-4f67-932e-2806af8d133d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Nvl7uiNid7Q4bvZU",
+          "name": "Rudra 72"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "rudraaja7@gmail.com",
+        "subject": "New Form Submission Received",
+        "message": "=A new form submission has been received.  \nName: {{ $json.Name }} \nEmail: {{ $json.Email }}\nMessage: {{ $json.Message }} \nTimestamp: {{ $json.Timestamp }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -32,
+        224
+      ],
+      "id": "25bfa067-18fb-475f-a21d-7713b3b328b9",
+      "name": "Send a message to our marketing team",
+      "webhookId": "fcd06e28-0aed-4f52-9c0d-6da069a88caf",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Nvl7uiNid7Q4bvZU",
+          "name": "Rudra 72"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1YcrD9E7_dgVKe_p0LUEuSJR21aXAHG9yBx9E8TC6Joo",
+          "mode": "list",
+          "cachedResultName": "Lead Capture (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YcrD9E7_dgVKe_p0LUEuSJR21aXAHG9yBx9E8TC6Joo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 509923933,
+          "mode": "list",
+          "cachedResultName": "Form Responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YcrD9E7_dgVKe_p0LUEuSJR21aXAHG9yBx9E8TC6Joo/edit#gid=509923933"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        128
+      ],
+      "id": "96b4e587-97da-4d03-8536-ce40d01353ca",
+      "name": "Google Sheets Trigger when new raw is added",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "QE5wIFw5c1wzJHvg",
+          "name": "Rudra 72 Google Sheet Trigger"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Send a message to our marketing team": {
+      "main": [
+        []
+      ]
+    },
+    "Google Sheets Trigger when new raw is added": {
+      "main": [
+        [
+          {
+            "node": "Send a message to potential lead",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a message to our marketing team",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message to potential lead": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "4e054a36-eae9-4284-8f30-b4fe7b679403",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "992efca98f70dc679c926e91fe29b45998a680b644eaaf41096e0bf2005f1f53"
+  },
+  "id": "KWOgzcSAk4AmoRST",
+  "tags": []
+}
