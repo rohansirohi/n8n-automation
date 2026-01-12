@@ -1,0 +1,187 @@
+{
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a715a41f-2f41-4023-bf8d-85971db9345d",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1n4F4oG97KNxvWP-_DGMZB7JKyQiN6LE60cpgGBDvzXI",
+          "mode": "list",
+          "cachedResultName": "Test2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1n4F4oG97KNxvWP-_DGMZB7JKyQiN6LE60cpgGBDvzXI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1n4F4oG97KNxvWP-_DGMZB7JKyQiN6LE60cpgGBDvzXI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "James Arthur",
+            "Email": "rudraaja7@gmail.com",
+            "Phone Number": "+15706846715",
+            "Company": "JMSolutions",
+            "Role": "CEO",
+            "Address": "USA"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone Number",
+              "displayName": "Phone Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Role",
+              "displayName": "Role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "2e2226e7-a4fe-4fd7-aaf4-a65555e101d0",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DMBUVfhJvYnTv02Y",
+          "name": "Rudra 72"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "={{ $json.Name }} - Welcome to the team!!",
+        "emailType": "text",
+        "message": "=Happy to wrk with  {{ $json.Company }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "a33d5c75-c820-4e99-b619-ad09ca50e614",
+      "name": "Send a message",
+      "webhookId": "ac0f2833-abe2-4165-996c-fd17833b3367",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Nvl7uiNid7Q4bvZU",
+          "name": "Rudra 72"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "f4a9f09f-ca3d-4f53-b20a-144165df1853",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "992efca98f70dc679c926e91fe29b45998a680b644eaaf41096e0bf2005f1f53"
+  },
+  "id": "GfzHwYIhmeX73ZTL",
+  "tags": []
+}
